@@ -18,6 +18,7 @@ datas = [
 
 binaries: list = []
 hiddenimports = collect_submodules("alembic") + [
+    "logging.config",
     "sqlalchemy.dialects.sqlite",
     "well_product",
 ]

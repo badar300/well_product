@@ -1,6 +1,5 @@
 """Generic single-database configuration."""
 
-from logging.config import fileConfig
 from pathlib import Path
 
 from alembic import context
@@ -8,11 +7,14 @@ from sqlalchemy import engine_from_config, pool
 
 from well_product.database import sqlite_url
 from well_product.models import Base
-from well_product.paths import ensure_user_data_dir
+from well_product.paths import ensure_user_data_dir, is_frozen
 
 config = context.config
 
-if config.config_file_name is not None:
+# PyInstaller builds often omit logging.config; dev uses alembic.ini logging.
+if config.config_file_name is not None and not is_frozen():
+    from logging.config import fileConfig
+
     fileConfig(config.config_file_name)
 
 project_root = Path(__file__).resolve().parents[1]
