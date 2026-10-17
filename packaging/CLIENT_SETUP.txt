@@ -1,0 +1,31 @@
+Well Product — quick start (Windows)
+====================================
+
+1. Unzip the folder you received (e.g. WellProduct-Windows.zip).
+2. Open the "WellProduct" folder.
+3. Double-click WellProduct.exe to start.
+4. Do NOT delete other files in this folder — the app needs them all.
+5. Optional: right-click WellProduct.exe → Send to → Desktop (create shortcut).
+
+Your data (backup this folder)
+------------------------------
+After you run the app once, your database and photos are saved here:
+
+   Desktop\WellProduct\
+
+Typical full path:
+   C:\Users\YOUR_NAME\Desktop\WellProduct\
+
+Inside you will see:
+   well_product.sqlite   — all customers, materials, products
+   media\                — product photos
+
+To back up: copy the entire Desktop\WellProduct folder to USB, OneDrive, or email (zip it).
+
+If Windows shows "Windows protected your PC"
+--------------------------------------------
+Click "More info" → "Run anyway". This is normal for apps without a paid certificate.
+
+Need help?
+----------
+Contact the person who sent you this app.
