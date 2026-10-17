@@ -17,8 +17,16 @@ datas = [
 ]
 
 binaries: list = []
-hiddenimports = collect_submodules("alembic") + [
+_alembic_submodules = [
+    name
+    for name in collect_submodules("alembic")
+    if not name.startswith("alembic.templates")
+]
+
+hiddenimports = _alembic_submodules + [
     "logging.config",
+    "logging.handlers",
+    "well_product.alembic_env",
     "sqlalchemy.dialects.sqlite",
     "well_product",
 ]
@@ -36,7 +44,7 @@ a = Analysis(
     hiddenimports=hiddenimports,
     hookspath=[],
     hooksconfig={},
-    runtime_hooks=[],
+    runtime_hooks=[str(project_root / "packaging" / "pyi_rth_logging.py")],
     excludes=[],
     win_no_prefer_redirects=False,
     win_private_assemblies=False,

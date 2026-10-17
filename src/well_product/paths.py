@@ -17,7 +17,7 @@ ALLOWED_IMAGE_SUFFIXES = frozenset({".jpg", ".jpeg", ".png", ".webp"})
 
 def is_frozen() -> bool:
     """True when running as a PyInstaller (or similar) bundled executable."""
-    return getattr(sys, "frozen", False)
+    return bool(getattr(sys, "frozen", False)) or hasattr(sys, "_MEIPASS")
 
 
 def project_root() -> Path:
