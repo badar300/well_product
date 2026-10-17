@@ -27,10 +27,14 @@ _alembic_submodules = [
     if not name.startswith("alembic.templates")
 ]
 
-hiddenimports = _alembic_submodules + [
+_well_product_submodules = collect_submodules("well_product")
+
+hiddenimports = _alembic_submodules + _well_product_submodules + [
     "logging.config",
     "logging.handlers",
     "well_product.alembic_env",
+    "well_product.data.hoody_seed",
+    "well_product.data.hoody_seed_snapshot",
     "sqlalchemy.dialects.sqlite",
     "well_product",
 ]

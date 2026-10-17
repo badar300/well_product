@@ -27,5 +27,6 @@ Run these on a Windows PC after `packaging/build_windows.ps1` succeeds.
 |---------|----------------|
 | App exits immediately | Missing Qt plugin — rebuild with `collect_all('PySide6')` in spec (already included). |
 | Migration error on startup | `alembic/` or `alembic.ini` not bundled — check spec `datas`. |
+| `No module named well_product.data.hoody_seed` | Old build before seed migration bundling — rebuild with latest `packaging/well_product.spec`. |
 | SmartScreen warning | Unsigned exe — choose “More info” → “Run anyway” or sign the binary later. |
 | DB not on Desktop | Running from Python dev install, not frozen exe — only packaged exe uses Desktop path. |
