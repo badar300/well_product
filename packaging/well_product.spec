@@ -11,9 +11,13 @@ block_cipher = None
 project_root = Path(SPECPATH).resolve().parent
 src_path = project_root / "src"
 
+_assets_dir = src_path / "well_product" / "ui" / "assets"
+_hoody_media_dir = src_path / "well_product" / "data" / "hoody_seed_media"
 datas = [
     (str(project_root / "alembic"), "alembic"),
     (str(project_root / "alembic.ini"), "."),
+    (str(_assets_dir), "well_product/ui/assets"),
+    (str(_hoody_media_dir), "well_product/data/hoody_seed_media"),
 ]
 
 binaries: list = []

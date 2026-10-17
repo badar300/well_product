@@ -31,7 +31,7 @@ def bundle_root() -> Path:
     return project_root()
 
 
-def _windows_desktop_dir() -> Path:
+def windows_desktop_dir() -> Path:
     home = Path.home()
     profile = Path(os.environ.get("USERPROFILE", str(home)))
     for candidate in (
@@ -47,7 +47,7 @@ def _windows_desktop_dir() -> Path:
 def _desktop_wellproduct_dir() -> Path:
     """User-visible folder for DB + media (easy manual backup)."""
     if sys.platform == "win32":
-        return _windows_desktop_dir() / APP_DIR_NAME
+        return windows_desktop_dir() / APP_DIR_NAME
     desktop = Path.home() / "Desktop" / APP_DIR_NAME
     if (Path.home() / "Desktop").is_dir():
         return desktop

@@ -28,7 +28,7 @@ well-product-seed-hoody-product = "well_product.scripts.seed_hoody_product:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-well_product = ["ui/assets/*"]
+well_product = ["ui/assets/*", "data/hoody_seed_media/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

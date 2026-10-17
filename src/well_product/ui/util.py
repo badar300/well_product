@@ -47,9 +47,15 @@ def configure_data_table(
     table.setSelectionBehavior(table.SelectionBehavior.SelectRows)
     table.setSelectionMode(table.SelectionMode.SingleSelection)
     table.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
+    table.setMouseTracking(True)
+    table.viewport().setMouseTracking(True)
     table.setProperty("class", "data-table")
     if compact:
         table.setProperty("class", "data-table compact")
+    style = table.style()
+    style.unpolish(table)
+    style.polish(table)
+    table.update()
 
 
 def build_page_header(title: str, subtitle: str | None = None) -> QWidget:

@@ -171,6 +171,17 @@ QTableWidget[class="data-table"]::item {
     padding: 8px 12px;
     border-bottom: 1px solid #f1f5f9;
 }
+QTableWidget[class="data-table"]::item:hover {
+    background-color: #f1f5f9;
+}
+QTableWidget[class="data-table"]::item:selected {
+    background-color: #dbeafe;
+    color: #0f172a;
+}
+QTableWidget[class="data-table"]::item:selected:hover {
+    background-color: #bfdbfe;
+    color: #0f172a;
+}
 QHeaderView::section {
     background: #f1f5f9;
     color: #475569;
@@ -190,6 +201,18 @@ QTableWidget {
     border-radius: 10px;
     gridline-color: #f1f5f9;
     selection-background-color: #dbeafe;
+    selection-color: #0f172a;
+}
+QTableWidget::item:hover {
+    background-color: #f1f5f9;
+}
+QTableWidget::item:selected {
+    background-color: #dbeafe;
+    color: #0f172a;
+}
+QTableWidget::item:selected:hover {
+    background-color: #bfdbfe;
+    color: #0f172a;
 }
 
 /* —— Cards & groups —— */

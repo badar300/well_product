@@ -8,6 +8,7 @@ from PySide6.QtCore import QEventLoop
 from PySide6.QtWidgets import QApplication, QDialog
 
 from well_product.database import init_db
+from well_product.platform.windows_shortcut import ensure_windows_desktop_shortcut
 from well_product.ui.login_dialog import LoginDialog
 from well_product.ui.main_window import MainWindow
 
@@ -24,6 +25,7 @@ def get_engine():
 def main() -> int:
     app = QApplication(sys.argv)
     app.setQuitOnLastWindowClosed(False)
+    ensure_windows_desktop_shortcut()
     engine = get_engine()
 
     while True:

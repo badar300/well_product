@@ -32,7 +32,7 @@ def test_frozen_windows_uses_desktop_wellproduct(tmp_path, monkeypatch) -> None:
     desktop.mkdir()
     monkeypatch.delenv("WELL_PRODUCT_DATA_DIR", raising=False)
     monkeypatch.setattr(paths, "is_frozen", lambda: True)
-    monkeypatch.setattr(paths, "_windows_desktop_dir", lambda: desktop)
+    monkeypatch.setattr(paths, "windows_desktop_dir", lambda: desktop)
     monkeypatch.setattr(sys, "platform", "win32")
     assert paths.user_data_dir() == desktop / paths.APP_DIR_NAME
 

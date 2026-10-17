@@ -4,8 +4,9 @@ Well Product — quick start (Windows)
 1. Unzip the folder you received (e.g. WellProduct-Windows.zip).
 2. Open the "WellProduct" folder.
 3. Double-click WellProduct.exe to start.
+   The first time you run it, a "Well Product" shortcut is created on your Desktop
+   (if that fails, right-click WellProduct.exe → Send to → Desktop (create shortcut)).
 4. Do NOT delete other files in this folder — the app needs them all.
-5. Optional: right-click WellProduct.exe → Send to → Desktop (create shortcut).
 
 Your data (backup this folder)
 ------------------------------
