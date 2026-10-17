@@ -52,6 +52,25 @@ if (-not (Test-Path $DistFolder)) {
 
 Copy-Item -Force (Join-Path $Root "packaging\CLIENT_SETUP.txt") (Join-Path $DistFolder "CLIENT_SETUP.txt")
 
+$GitSha = $env:GITHUB_SHA
+if (-not $GitSha) {
+    Push-Location $Root
+    try {
+        $GitSha = (git rev-parse HEAD 2>$null)
+    } finally {
+        Pop-Location
+    }
+}
+if (-not $GitSha) {
+    $GitSha = "unknown"
+}
+$BuildStamp = @(
+    "Well Product Windows build"
+    "git_commit=$GitSha"
+    "built_utc=$(Get-Date -Format o)"
+) -join "`n"
+Set-Content -Path (Join-Path $DistFolder "BUILD_INFO.txt") -Value $BuildStamp -Encoding UTF8
+
 New-Item -ItemType Directory -Force -Path $ReleaseDir | Out-Null
 if (Test-Path $ZipPath) {
     Remove-Item -Force $ZipPath

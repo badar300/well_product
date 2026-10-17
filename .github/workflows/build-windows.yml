@@ -1,0 +1,63 @@
+name: Build Windows client ZIP
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+    paths:
+      - "src/**"
+      - "alembic/**"
+      - "packaging/**"
+      - "pyproject.toml"
+      - ".github/workflows/build-windows.yml"
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Show commit being built
+        shell: pwsh
+        run: |
+          git rev-parse HEAD
+          git log -1 --oneline
+          Get-Content alembic/env.py
+
+      - name: Fail if alembic/env.py still uses logging.config
+        shell: pwsh
+        run: |
+          $envPy = Get-Content alembic/env.py -Raw
+          if ($envPy -match 'logging\.config') {
+            Write-Error "alembic/env.py must not import logging.config (use well_product.alembic_env)."
+            exit 1
+          }
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build and zip
+        shell: pwsh
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+        run: |
+          Set-ExecutionPolicy -Scope Process Bypass
+          .\packaging\build_windows.ps1
+
+      - name: Verify build stamp in ZIP output
+        shell: pwsh
+        run: |
+          Get-Content dist/WellProduct/BUILD_INFO.txt
+          if (-not (Test-Path release/WellProduct-Windows.zip)) {
+            throw "Missing release/WellProduct-Windows.zip"
+          }
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: WellProduct-Windows-${{ github.sha }}
+          path: release/WellProduct-Windows.zip
+          retention-days: 30
